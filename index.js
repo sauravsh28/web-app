@@ -74,7 +74,6 @@ app.get("/user", requiresAuth(), async (req, res) => {
     refresh_token: req.oidc && req.oidc.refreshToken,
   });
 });
-
 app.get("/expenses", requiresAuth(), async (req, res, next) => {
   try {
     // 👇 get the token from the request 👇
