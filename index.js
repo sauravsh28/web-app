@@ -76,6 +76,9 @@ app.get("/user", requiresAuth(), async (req, res) => {
 });
 app.get("/expenses", requiresAuth(), async (req, res, next) => {
   try {
+     // 👇 get the token from the request 👇
+    const { token_type, access_token } = req.oidc.accessToken;
+    // 👇 then send it as an authorization header 👇
     const expenses = await axios.get(`${API_URL}/reports`);
     res.render("expenses", {
       user: req.oidc && req.oidc.user,
